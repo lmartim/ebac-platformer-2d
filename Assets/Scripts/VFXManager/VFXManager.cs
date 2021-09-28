@@ -20,7 +20,8 @@ public class VFXManager : Singleton<VFXManager>
             {
                 var item = Instantiate(i.prefab);
                 item.transform.position = position;
-                Destroy(item.gameObject, 5f);
+                item.SetActive(true);
+                Destroy(item.gameObject, 3f);
                 break;
             }
         }

@@ -19,15 +19,17 @@ public class ItemCollectableBase : MonoBehaviour
 
     protected virtual void Collect()
     {
-        if (graphicItem != null) graphicItem.SetActive(false);
+        if (graphicItem != null && graphicItem.activeSelf)
+        {
+            graphicItem.SetActive(false);
+            OnCollect();
+        }
         Invoke("HideObject", timeToHide);
-        OnCollect();
     }
 
     private void HideObject()
     {
         gameObject.SetActive(false);
-
     }
 
     protected virtual void OnCollect()
