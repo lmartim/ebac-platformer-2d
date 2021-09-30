@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     //public Animator animator;
     private Animator _currentPlayer;
 
+    public GameObject uiGameOver;
+
     [Header("Setup")]
     public SOPlayerSetup soPlayerSetup;
 
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     public float distToGround;
     public float spaceToGround = .1f;
     public ParticleSystem jumpVFX;
+
 
     private void Awake()
     {
@@ -53,6 +56,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (healthBase.isDead) return;
+
         IsGrounded();
         HandleJump();
         HandleMoviment();
@@ -134,6 +139,7 @@ public class Player : MonoBehaviour
 
     public void DestroyMe()
     {
+        uiGameOver.SetActive(true);
         Destroy(gameObject);
     }
 }

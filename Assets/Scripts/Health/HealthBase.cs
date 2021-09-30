@@ -13,7 +13,7 @@ public class HealthBase : MonoBehaviour
     public float delayToKill = 1f;
 
     private int _currentLife;
-    private bool _isDead;
+    public bool isDead;
 
     
     [SerializeField] private FlashColor _flashColor;
@@ -34,7 +34,7 @@ public class HealthBase : MonoBehaviour
 
     public void Damage(int damage)
     {
-        if (_isDead) return;
+        if (isDead) return;
 
         _currentLife -= damage;
 
@@ -51,7 +51,7 @@ public class HealthBase : MonoBehaviour
 
     private void Kill()
     {
-        _isDead = true;
+        isDead = true;
 
         if (destroyOnKill)
         {
