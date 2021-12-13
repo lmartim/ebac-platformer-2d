@@ -32,6 +32,11 @@ public class HealthBase : MonoBehaviour
         _currentLife = startLife;
     }
 
+    public void UpdateInitialLife(int newInitialLife)
+    {
+        _currentLife = startLife = newInitialLife;
+    }
+
     public void Damage(int damage)
     {
         if (isDead) return;

@@ -45,11 +45,13 @@ public class EnemyBase : MonoBehaviour
 
     void DamageOther(GameObject other)
     {
-        var health = other.GetComponent<HealthBase>();
+        //var health = other.GetComponent<HealthBase>();
+        var player = other.GetComponent<Player>();
 
-        if (health != null)
+        if (player!= null)
         {
-            health.Damage(damage);
+            //health.Damage(damage);
+            player.TakeDamage(damage);
             PlayAttackAnimation();
         }
     }

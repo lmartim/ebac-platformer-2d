@@ -7,6 +7,8 @@ using TMPro;
 public class ItemManager : Singleton<ItemManager>
 {
     public SOInt coins;
+    public SOInt playerMaxHearts;
+    public SOInt playerCurrentHearts;
     public TextMeshProUGUI coinsText;
 
     private void Start()
@@ -17,6 +19,7 @@ public class ItemManager : Singleton<ItemManager>
     private void Reset()
     {
         coins.value = 0;
+        playerCurrentHearts.value = playerMaxHearts.value;
         UpdateCoinsText();
     }
 
@@ -24,6 +27,11 @@ public class ItemManager : Singleton<ItemManager>
     {
         coins.value += amount;
         UpdateCoinsText();
+    }
+
+    public void RegainHeart(int amount = 1)
+    {
+        if (playerCurrentHearts.value < playerMaxHearts.value) playerCurrentHearts.value++;
     }
 
     private void UpdateCoinsText()

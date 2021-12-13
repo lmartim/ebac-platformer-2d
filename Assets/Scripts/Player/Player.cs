@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
 
     [Header("Setup")]
     public SOPlayerSetup soPlayerSetup;
+    public SOInt playerMaxHealth;
+    public SOInt playerCurrentHealth;
 
     [Header("Jump Collision Check")]
     public Collider2D collider2d;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
     {
         if (healthBase != null)
         {
+            healthBase.UpdateInitialLife(playerMaxHealth.value);
             healthBase.OnKill += OnPlayerKill;
         }
 
@@ -135,6 +138,12 @@ public class Player : MonoBehaviour
     {
         myRigidbody.transform.DOScaleY(soPlayerSetup.jumpScaleY, soPlayerSetup.animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
         myRigidbody.transform.DOScaleX(soPlayerSetup.jumpScaleX, soPlayerSetup.animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayerSetup.ease);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        healthBase.Damage(damage);
+        playerCurrentHealth.value -= damage;
     }
 
     public void DestroyMe()
